@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mostrarHtml">
+      <!-- no es recomendable el uso de esta directiva, es mejor usar alguna plantilla o componente en ves de la interpolacion de texto
+    
+    si queremos crear una plantilla lo debemos hacer mediante componentes, y 
+    solo debemos mostrar el contenido confiable a través de la directiva ya que puede conducir a vulnerabilidades XSS.-->
+      <p v-html="html"></p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            html: "<p style:'color: red'>hola</p>",
+          };
+        },
+      });
+      const vm = app.mount("#mostrarHtml");
+    </script>
+  </body>
+</html>

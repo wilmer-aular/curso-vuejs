@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>metodos</title>
+  </head>
+  <body>
+    <div id="metodos">
+      <h1>{{count}}</h1>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const app = Vue.createApp({
+        beforeCreate() {
+          //se ejecuta antes de que la app cargue
+          console.log("hola");
+          console.log(this.count);
+        },
+        created() {
+          //ya los datos estan cargados
+          console.log("hola");
+          console.log(this.count);
+        },
+        data() {
+          return {
+            count: 500,
+          };
+        },
+        methods: {},
+      });
+      const vm = app.mount("#metodos");
+    </script>
+  </body>
+</html>

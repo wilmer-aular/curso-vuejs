@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>directivas</title>
+  </head>
+  <body>
+    <div id="directivas">
+      <!-- el v-if funciona igual que la directiva ng-if de angular-->
+      <h1 v-if="show">texto cualquiera</h1>
+
+      <!--
+          v-bind:href: "elemento de data."
+          lo que esta entre comillas inmediatamente vue lo reconocera
+          asi podemos manejar interpolacion en atributos de elementos del html
+      -->
+
+      <a v-bind:href="url">esto es un ling</a><br />
+      <!-- podemos manejar atributos dinamicamente, en el caso de los nombres de los atributos deben ser todo en minuscula
+    si ponemos el atributo en valor null el atributo se eliminara del elemento-->
+      <a v-bind:[attrname]="url">esto es un ling</a> <br />
+      <!--
+          abreviaturas en Vue.Js
+          : esto abrevia el v-bing
+          se puede aplicar para el dinamico
+      -->
+      <a :href="url">esto es un ling abreviado</a><br />
+      <a :[attrname]="url">esto es un ling dinamico abreviado</a>
+
+      <!--
+        v-on: esto es añadir una escucha para los eventos que ocurran en ese elemento
+        con el prevent lo que hace es prevenir el envio de formulario para procesar lo que esta en medio del metodo.
+      -->
+      <form v-on:submit.prevent="submitForm">
+        <button type="submit">sent</button>
+      </form>
+
+      <!--
+        v-on: se abrevia con el @
+      -->
+      <form @submit.prevent="submitForm">
+        <button type="submit">sent abreviado</button>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      // la directiva v-if funciona igual que la directiva ng-if de angularJs
+      const app = Vue.createApp({
+        data() {
+          return {
+            show: true,
+            attrname: "href",
+            url: "https://google.com",
+          };
+        },
+        methods: {
+          submitForm() {
+            console.log("formulario enviado");
+          },
+        },
+      });
+      const vm = app.mount("#directivas");
+    </script>
+  </body>
+</html>

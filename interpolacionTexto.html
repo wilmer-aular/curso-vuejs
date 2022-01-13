@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interpolacion</title>
+  </head>
+  <body>
+    <div id="imterpolacion">
+      <p>{{age > 18 ? "mayor de edad" : "menor de edad"}}</p>
+      <span v-once>{{name}}</span>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //luego veremos las propiedades computadas.
+      //V-once: ayuda a que los valores que contienen esta propiedad se mantengan sin importar que cambie su valor.
+
+      //para interpolacion a nivel de atributo usamos la propiedad v-bind
+      const app = Vue.createApp({
+        data() {
+          return {
+            name: "wilmer",
+            age: 28,
+          };
+        },
+      });
+      const vm = app.mount("#imterpolacion");
+    </script>
+  </body>
+</html>

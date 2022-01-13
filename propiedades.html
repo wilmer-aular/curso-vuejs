@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.Js</title>
+  </head>
+  <body>
+    <div id="propiedades">
+      <like-component></like-component>
+      <like-component></like-component>
+      <like-component></like-component>
+      <like-component></like-component>
+      <like-component></like-component>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const app = Vue.createApp({});
+
+      app.component("LikeComponent", {
+        template: `
+          {{count}}
+      <button v-on:click="increment">+</button>
+      <button v-on:click="decrement">-</button>
+      <br/>
+          `,
+        data() {
+          return { count: 0 };
+        },
+        methods: {
+          increment() {
+            this.count += 1;
+          },
+          decrement() {
+            this.count -= 1;
+          },
+        },
+      });
+
+      // vue model es el componente principal de la app
+      const vm = app.mount("#propiedades");
+    </script>
+  </body>
+</html>
