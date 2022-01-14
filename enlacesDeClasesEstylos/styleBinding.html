@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div :style="{color: activeColor, 'font-size': fontSize + 'px'}">
+        <p>{{text}}</p>
+      </div>
+      <div :style="styleObject">
+        <p>{{text}}</p>
+      </div>
+      <div :style="[styleObject, styleObject2]">
+        <p>{{text}}</p>
+      </div>
+      <div :style="{display: ['-webkit-box', '-ms-flexbox', 'flex']}">
+        <p>{{text}}</p>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      // ALGO QUE HAY QUE CONSIDERAR CON VUE SON LOS PREFIJOS DEL PROVEEDOR
+      // son cuando hay estilos que no estan disponibles de forma nativa dentro del navegador
+      // investigar;
+      const app = Vue.createApp({
+        data() {
+          return {
+            text: "wilmer",
+
+            activeColor: "red",
+            fontSize: 40,
+            styleObject: {
+              color: "red",
+              "font-size": "30px",
+            },
+            styleObject2: {
+              background: "blue",
+            },
+          };
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

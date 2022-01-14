@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="computadas">
+      <h1>{{fullName}}</h1>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //las propiedades computadas o calculadas van a funcionar igual que los metodos pero su aplicacion sera un poco distinta.
+      // van a tener una funcion similar a las propiedades que definimos en nuestro metodo data
+      // la ventaja  de usar las propiedades calculadas es que estas se almacena en cache ademas de que conservan
+      // el comportamiento reactivo. es decir que cuando las propiedades que cambien la misma tambien lo hara.
+      // y la que queda en cache va ser la propiedad calculada. algo parecido al useMemo
+      const app = Vue.createApp({
+        data() {
+          return {
+            name: "wilmer",
+            lasName: "aular",
+          };
+        },
+        computed: {
+          fullName() {
+            return `${this.name} ${this.lasName}`;
+          },
+        },
+      });
+      const vm = app.mount("#computadas");
+    </script>
+  </body>
+</html>

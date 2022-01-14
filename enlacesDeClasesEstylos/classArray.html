@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="classArray">
+      <p :class="[hasError ? error: active]">{{text}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      // cuando queremos interpolar o mostrar el valor de una propiedad en el DOM dentro de un atributo este se debe hacer con
+      // la directiva v-bind.
+      // vue nos ofrece una caracteristica especial para el manejo de las clases. con la sintaxi {class: valor boolean indicando si este se mostrara o no}
+
+      //
+      const app = Vue.createApp({
+        data() {
+          return {
+            text: "wilmer",
+            hasError: false,
+            active: "active",
+            error: "error",
+          };
+        },
+      });
+      const vm = app.mount("#classArray");
+    </script>
+  </body>
+</html>

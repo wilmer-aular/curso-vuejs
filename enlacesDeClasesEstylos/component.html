@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p :class="classObject">{{text}}</p>
+      <my-component :class="{active: isActive}"></my-component>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      // En el caso de los componentes, Vue no sobreescribirá las clases del componente con las clases que
+      //definamos dentro de la plantilla del componente, sino que las concatenará
+      //También es posible que desee acceder a los atributos del componente, lo cual es posible con la variable especial $attrs
+      const app = Vue.createApp({
+        data() {
+          return {
+            text: "wilmer",
+            isActive: true,
+          };
+        },
+      });
+      app.component("MyComponent", {
+        template: `
+          <p class= "foo bar"> hola</p>
+          `,
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vFor</title>
+  </head>
+  <body>
+    <div id="vFor">
+      <h1 v-for="text in texts">{{text.key}}</h1>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            texts: [
+              { value: 1, key: "wilmer" },
+              { value: 2, key: "jose" },
+              { value: 3, key: "aular" },
+            ],
+          };
+        },
+      });
+      const vm = app.mount("#vFor");
+    </script>
+  </body>
+</html>

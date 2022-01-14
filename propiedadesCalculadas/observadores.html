@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="observadores">
+      <h1>{{count}}</h1>
+
+      <button @click="increment">aumentar</button>
+      <button @click="decrement">disminuir</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      // los watch los podemos describir como propiedades y metodos que van a estar atentos al cambio de una propiedad.
+      // los metodos de watch van a tener los mismos nombre de la propiedad que quien registrar.
+
+      const app = Vue.createApp({
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        watch: {
+          // watch escuchara los cambios de la propiedad.
+          count(value) {
+            console.log({ value });
+          },
+        },
+        methods: {
+          increment() {
+            this.count++;
+          },
+          decrement() {
+            this.count--;
+          },
+        },
+      });
+      const vm = app.mount("#observadores");
+    </script>
+  </body>
+</html>

@@ -8,6 +8,8 @@
       <h1>{{count}}</h1>
     </div>
 
+    <button @click="showAlert">Mostrar alerta</button>
+
     <script src="https://unpkg.com/vue@next"></script>
 
     <script>
@@ -25,9 +27,20 @@
         data() {
           return {
             count: 500,
+            name: "wilmer",
           };
         },
-        methods: {},
+        //los metodos no deberian tener efectos secundarios o peticiones asincronas
+        // en estos casos usar ganchos para las peticiones asincronas
+        methods: {
+          showAlert() {
+            this.changeName("raul");
+            alert(`hola ${this.name}`);
+          },
+          changeName() {
+            this.name = name;
+          },
+        },
       });
       const vm = app.mount("#metodos");
     </script>
