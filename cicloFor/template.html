@@ -4,29 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vFor</title>
+    <title>Document</title>
   </head>
   <body>
-    <div id="vFor">
-      <h1 v-for="(text, index) in texts" :key="text.key">{{text.value}}</h1>
+    <div id="app">
+      <template v-for="item in items" :key="item.id">
+        <h1>{{item.name}}</h1>
+        <h2>{{item.mssg}}</h2>
+      </template>
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
 
     <script>
-      //No use tipos de datos no primitivos como matrices u objetos como valores para key. Use strings o valores numéricos en su lugar.
       const app = Vue.createApp({
         data() {
           return {
-            texts: [
-              { value: "wilmer", key: 1 },
-              { value: "jose", key: 2 },
-              { value: "aular", key: 3 },
+            items: [
+              { id: 1, name: "wilmer", mssg: "hola" },
+              { id: 2, name: "pedro", mssg: "hola" },
+              { id: 3, name: "raul", mssg: "hola" },
+              { id: 4, name: "pepe", mssg: "hola" },
             ],
           };
         },
       });
-      const vm = app.mount("#vFor");
+      const vm = app.mount("#app");
     </script>
   </body>
 </html>

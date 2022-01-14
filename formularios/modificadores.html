@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+<!--MODIFICADOR LAZY: HACE ALGO PARECIDO AL EVENTO CHANGE-->
+      <input type="text" name="mssg" v-model.lazy="message"></input>
+ <p>{{message}}</p>
+     
+    <!--MODIFICADOR NUMBER: ayuda a mantener el tipo de dato de nuetro valor numerico -->
+    <input type="number" name="number" v-model.number="number"></input>
+    <p>{{number}}</p>
+
+<!--MODIFICADOR TRIM:   QUITA LOS ESPACIOS EN NUESTRA CADENA-->
+      <input type="text" name="mssg" v-model.trim="message"></input>
+ <p>{{message}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+       
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "",
+          number:0
+          };
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in sortItem">{{item}}</li>
+      </ul>
+      <ul v-for="items in sets">
+        <li v-for="item in even(items)">{{item}}</li>
+      </ul>
+
+      <!--RANGES-->
+      <h1>RANGOS</h1>
+      <ul>
+        <li v-for="item in 2">{{item}}</li>
+      </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //En algunos casos vamos a requerir un cierto procesamiento de las matrices. Esto lo podemos lograr fácilmente a través de los computed properties.
+      //En algunos casos donde las propiedades computadas no son factibles, podemos emplear un método. Por ejemplo en las listas anidadas
+      const app = Vue.createApp({
+        data() {
+          return {
+            items: [1, 4, 7, 9, 5, 3],
+            sets: [
+              [1, 2, 3, 4, 5, 6, 7],
+              [1, 2, 3, 4, 5, 6, 7, 8],
+            ],
+          };
+        },
+        methods: {
+          even(numbers) {
+            return numbers.filter((number) => number % 2 === 0);
+          },
+        },
+        computed: {
+          //recordar que las propiedades computadas devuelven los datos con el metodo getter que trae por defecto
+          sortItem() {
+            return this.items.sort();
+          },
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

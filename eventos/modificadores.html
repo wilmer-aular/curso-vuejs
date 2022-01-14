@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <form @submit="submitForm($event)">
+        <input type="submit" name="" value="enviar" />
+      </form>
+      <!--TAMBIEN PODEMOS AGREGAR EL MODIFICADOR DIRECTAMENTE AL EVENTO
+    CONSULTAR LOS MODIFICADORES.
+    -->
+      <form @submit.prevent="submitForm2()">
+        <input type="submit" name="" value="enviar" />
+      </form>
+      <!--TAMBIEN HAY UN MODIFICADOR DE TECLADO LLAMANDO ENTER
+        podemos hacer combinacion de teclas..
+    -->
+      <form @submit.prevent.stop="submitForm2()">
+        <input type="text" name="foo" @keyup.alt.enter.exact="pressEnter()" />
+        <input type="submit" name="" value="enviar" />
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //Cuando estamos trabajando con eventos es muy común llamar e.preventDefault() o e.stopPropagation(), dentro de los manejadores de eventos
+      //Con VueJS, es posible implementar estos modificadores sobre la directiva, así nuestros métodos solo se encargarían de la lógica del evento
+      // sin tener que estar lidiando con los detalles de los eventos en el DOM
+      /*
+      .stop - evita que el evento se propague en el árbol DOM
+
+        .prevent - evita el comportamiento predeterminado
+
+        .capture - el modo de captura se utiliza para el manejo de eventos
+
+        .self - solo se activa si el objetivo del evento es él mismo
+
+        .once - ejecuta la función como máximo una vez
+
+        .passive - se emplea para mejorar el performance en dispositivos móviles.
+      */
+      //Este tipo de modificadores nos permite verificar por una tecla específica del teclado
+      //En este tipo de modificadores podemos emplear cualquier tecla expuesta vía KeyboardEvent.key, las cuales deben estar escritas en kebab-case
+
+      /*
+      Algunos de los modificadores más comunes son:
+
+.enter
+
+.tab
+
+.delete (captures both "Delete" and "Backspace" keys)
+
+.esc
+
+.space
+
+.up
+
+.down
+
+.left
+
+.right
+      */
+      /*Nos permite definir la escucha de un evento solo cuando el modificador correspondiente es presionado.
+
+.ctrl
+
+.alt
+
+.shift
+
+.meta
+
+En los teclados Macintosh, meta es la tecla de comando (⌘). En los teclados de Windows, meta es la tecla de Windows (⊞). En los teclados de Sun Microsystems, la meta está marcada como un diamante sólido (◆)
+También tenemos el modificador .exact el desencadenará el evento cuando se produzca la combinación exacta de teclas pulsadas
+*/
+      /*
+Modificadores del mouse
+.left
+
+.right
+
+.middle
+
+Estos modificadores restringen el controlador a eventos activados por un botón específico del mouse.
+*/
+      const app = Vue.createApp({
+        data() {
+          return {};
+        },
+        methods: {
+          submitForm(event) {
+            //con este metodo podemos prevenir el comportamiendo natural de un evento
+            // esto nos permite trabajar la data antes de enviar el formulario
+            event.preventDefault();
+            console.log("enviar");
+          },
+          submitForm2() {
+            console.log("enviar2");
+          },
+          pressEnter() {
+            console.log("se dio click en enter");
+          },
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

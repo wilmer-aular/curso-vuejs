@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{count}}</p>
+      <button v-on:click="count +=1">click</button>
+      <!-- VUE NOS OFRECE UNA VERSION ABREVIADA DE LOS EVENTOS-->
+      <button @click="decrement(3, $event), showAler()">cancel</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //Para escuchar eventos lo podemos hacer mediante la directiva v-on usualmente esta directiva es abreviada con el símbolo @
+      // vue nos permite realizar expresiones dentro de un evento
+      //A veces también es necesario acceder al evento original del DOM. Esto lo podemos conseguir con la variable especial $event
+      //También podemos pasar múltiples eventos separados por una coma.
+      const app = Vue.createApp({
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          decrement(number, $event) {
+            console.log($event);
+            this.count -= number;
+          },
+          showAler() {
+            alert(this.count);
+          },
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>

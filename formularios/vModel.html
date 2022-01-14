@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p style="white-space: pre-wrap" v-html="message"></p>
+      <textarea name="mssg" v-model="message"></textarea>
+ <p>{{message}}</p>
+     
+      <input type="checkbox" id="checkbox_a" v-model="checked"></input>
+      <label for="checkbox_a">mi checkbox</label>
+      <p>{{checked}}</p>
+
+      <select v-model="name" multiple >
+          <option value="wilmer">wilmer</option>
+          <option value="jose">jose</option>
+      </select>
+      <p>{{name}}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+        /*
+        El enlace de datos entre un input y las propiedades de nuestro componente de Vue es un poco diferente a la interpolación de texto
+        Esta vinculación se consigue de una manera muy sencilla con la directiva v-model
+        Como nota, debe saber que v-model ignorará los valores de los atributos value, checked o selected de los atributos de un input
+        */
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: "wilmer",
+            checked:true,
+            name:""
+          };
+        },
+      });
+      const vm = app.mount("#app");
+    </script>
+  </body>
+</html>
